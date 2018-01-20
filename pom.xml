@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.mposhatov</groupId>
-    <artifactId>base</artifactId>
+    <artifactId>gomelinvest</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
 
@@ -30,7 +30,7 @@
     </properties>
 
     <build>
-        <finalName>base</finalName>
+        <finalName>gomelinvest</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
