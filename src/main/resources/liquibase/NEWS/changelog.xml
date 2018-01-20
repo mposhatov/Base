@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="20.01.2018 15:14" author="mposhatov">
+        <createTable tableName="NEWS">
+            <column name="ID" type="java.sql.Types.BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="PK_NEWS_1"/>
+            </column>
+            <column name="NAME" type="java.sql.Types.VARCHAR(200)">
+                <constraints unique="true" uniqueConstraintName="UC_NEWS_1"/>
+            </column>
+            <column name="CONTENT" type="java.sql.Types.LONGVARCHAR"/>
+            <column name="STATUS" type="java.sql.Types.TINYINT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20.01.2018 15:14" author="mposhatov">
+        <createTable tableName="PUBLICATION_SCHEDULE">
+            <column name="NEWS_ID" type="java.sql.Types.BIGINT">
+                <constraints primaryKey="true" primaryKeyName="PK_PUBLICATION_SCHEDULE_1"/>
+            </column>
+            <column name="AT" type="java.sql.Types.TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20.01.2018 15:14" author="mposhatov">
+        <createTable tableName="UNPUBLICATION_SCHEDULE">
+            <column name="NEWS_ID" type="java.sql.Types.BIGINT">
+                <constraints primaryKey="true" primaryKeyName="PK_PUBLICATION_SCHEDULE_1"/>
+            </column>
+            <column name="AT" type="java.sql.Types.TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
