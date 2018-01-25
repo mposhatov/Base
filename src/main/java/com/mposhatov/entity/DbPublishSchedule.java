@@ -6,8 +6,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "PUBLICATION_SCHEDULE")
-public class DbPublicationSchedule {
+@Table(name = "PUBLISH_SCHEDULE")
+public class DbPublishSchedule {
 
     @Id
     @GeneratedValue(generator = "news")
@@ -24,11 +24,15 @@ public class DbPublicationSchedule {
     @Temporal(TemporalType.TIMESTAMP)
     private Date at;
 
-    protected DbPublicationSchedule() {
+    protected DbPublishSchedule() {
     }
 
-    public DbPublicationSchedule(DbNews news, Date at) {
+    public DbPublishSchedule(DbNews news, Date at) {
         this.news = news;
+        this.at = at;
+    }
+
+    public void setAt(Date at) {
         this.at = at;
     }
 

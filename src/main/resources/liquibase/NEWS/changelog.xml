@@ -18,19 +18,19 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="20.01.2018 15:14" author="mposhatov">
-        <createTable tableName="PUBLICATION_SCHEDULE">
+    <changeSet id="20.01.2018 15:20" author="mposhatov">
+        <createTable tableName="PUBLISH_SCHEDULE">
             <column name="NEWS_ID" type="java.sql.Types.BIGINT">
-                <constraints primaryKey="true" primaryKeyName="PK_PUBLICATION_SCHEDULE_1"/>
+                <constraints primaryKey="true" primaryKeyName="PK_PUBLISH_SCHEDULE_1"/>
             </column>
             <column name="AT" type="java.sql.Types.TIMESTAMP"/>
         </createTable>
     </changeSet>
 
-    <changeSet id="20.01.2018 15:14" author="mposhatov">
-        <createTable tableName="UNPUBLICATION_SCHEDULE">
+    <changeSet id="20.01.2018 15:24" author="mposhatov">
+        <createTable tableName="UNPUBLISH_SCHEDULE">
             <column name="NEWS_ID" type="java.sql.Types.BIGINT">
-                <constraints primaryKey="true" primaryKeyName="PK_PUBLICATION_SCHEDULE_1"/>
+                <constraints primaryKey="true" primaryKeyName="PK_PUBLISH_SCHEDULE_1"/>
             </column>
             <column name="AT" type="java.sql.Types.TIMESTAMP"/>
         </createTable>

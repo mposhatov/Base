@@ -1,11 +1,20 @@
 package com.mposhatov.util;
 
-import com.mposhatov.entity.*;
+import com.mposhatov.dto.News;
+import com.mposhatov.entity.DbNews;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 @Service
 public class EntityConverter {
+
+    public static News toNews(DbNews dbNews) {
+        return new News(
+                dbNews.getId(),
+                dbNews.getName(),
+                dbNews.getContent(),
+                dbNews.getPublishSchedule().getAt(),
+                dbNews.getUnpublishSchedule().getAt(),
+                dbNews.getStatus());
+    }
+
 }

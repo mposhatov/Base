@@ -1,6 +1,7 @@
 package com.mposhatov.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "NEWS")
@@ -20,13 +21,41 @@ public class DbNews {
     @Convert(converter = NewsStatusConverter.class)
     private NewsStatus status;
 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "news")
+    private DbPublishSchedule publishSchedule;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "news")
+    private DbUnpublishSchedule unpublishSchedule;
+
     protected DbNews() {
     }
 
-    public DbNews(String name, String content, NewsStatus status) {
+    public DbNews(String name, String content, Date publishAt, Date unpublishAt) {
         this.name = name;
         this.content = content;
+        this.status = NewsStatus.CREATED;
+        this.publishSchedule = new DbPublishSchedule(this, publishAt);
+        this.unpublishSchedule = new DbUnpublishSchedule(this, unpublishAt);
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setStatus(NewsStatus status) {
         this.status = status;
+    }
+
+    public void setPublishSchedule(Date at) {
+        this.publishSchedule.setAt(at);
+    }
+
+    public void setUnpublishSchedule(Date at) {
+        this.unpublishSchedule.setAt(at);
     }
 
     public Long getId() {
@@ -43,5 +72,13 @@ public class DbNews {
 
     public NewsStatus getStatus() {
         return status;
+    }
+
+    public DbPublishSchedule getPublishSchedule() {
+        return publishSchedule;
+    }
+
+    public DbUnpublishSchedule getUnpublishSchedule() {
+        return unpublishSchedule;
     }
 }
