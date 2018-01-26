@@ -1,5 +1,6 @@
 var url = {
-    news: contextUrl + "/news"
+    news: contextUrl + "/news",
+    newsList: contextUrl + "/news-list"
 };
 
 var defaultAjaxParams = {
