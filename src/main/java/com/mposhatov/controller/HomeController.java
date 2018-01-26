@@ -10,8 +10,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Transactional(noRollbackFor = LogicException.class)
 public class HomeController {
 
-    @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String goHome() {
         return "welcome";
+    }
+
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public String goAdmin() {
+        return "admin";
     }
 }

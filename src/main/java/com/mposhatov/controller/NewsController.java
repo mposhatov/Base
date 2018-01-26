@@ -5,9 +5,10 @@ import com.mposhatov.dto.News;
 import com.mposhatov.entity.DbNews;
 import com.mposhatov.exception.LogicException;
 import com.mposhatov.util.EntityConverter;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -47,14 +48,14 @@ public class NewsController {
     @RequestMapping(value = "/news-list", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<List<News>> getNewsList(
-            @RequestParam(value = "page", required = false) Integer page,
-            @RequestParam(value = "size", required = false) Integer size) {
+            @RequestParam(value = "page", required = true) Integer page,
+            @RequestParam(value = "size", required = true) Integer size) {
 
         final List<DbNews> dbNewsList =
                 newsRepository.findAll(
                         new PageRequest(
                                 page != null ? page : defaultPage,
-                                size != null ? size : defaultPageSize))
+                                size != null ? size : defaultPageSize, Sort.Direction.ASC, "publishSchedule.at"))
                         .getContent();
 
         final List<News> newsList = dbNewsList.stream().map(EntityConverter::toNews).collect(Collectors.toList());

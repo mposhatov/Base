@@ -4,7 +4,6 @@
 
 <head>
     <title>Мир Квестов</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/news.css">
     <script>
         var contextUrl = "${pageContext.request.contextPath}";
     </script>
@@ -12,14 +11,28 @@
 
 <body>
 
-<div id="workspace" class="workspace">
+<input id="name" type="text" maxlength="200"/>
+
+<input id="publishAt" type="date" name="calendar"/>
+
+<input id="unpublishAt" type="date" name="calendar"/>
+
+<div id="content">
 </div>
 
+<button onclick="addNEws()">Добавить новость</button>
+
 <script defer type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
+<script defer type="text/javascript" src="${pageContext.request.contextPath}/js/handlebars.js"></script>
 <script defer type="text/javascript" src="${pageContext.request.contextPath}/js/global.js"></script>
-<script defer type="text/javascript" src="${pageContext.request.contextPath}/js/welcome.js"></script>
 <script defer type="text/javascript" src="${pageContext.request.contextPath}/js/news.js"></script>
-<script defer type="text/javascript" src="${pageContext.request.contextPath}/js/moment.js"></script>
+<script defer type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
+
+<script>
+    window.onload = function() {
+        CKEDITOR.replace('content');
+    };
+</script>
 
 </body>
 

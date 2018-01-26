@@ -34,6 +34,10 @@ function doAjaxRequest(ajaxParams) {
 }
 
 var templates = {
+    news: {
+        url: contextUrl + "/templates/news.hbs",
+        body: null
+    }
 };
 
 function getTemplates() {
