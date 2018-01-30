@@ -12,7 +12,7 @@ public class HomeController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String goHome() {
-        return "welcome";
+        return "client";
     }
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)

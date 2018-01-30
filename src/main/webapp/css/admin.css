@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.form-full-news {
+    display: none;
+    position: relative;
+    z-index: 1;
+}
+
+.button-show-news, .button-updated-news{
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.button-show-news:hover {
+    cursor: pointer;
+}
+
+.full-news {
+    padding:10px;
+    margin:10px;
+    border: 1px solid black;
+    display: none;
+}
+
+.short-news {
+    padding:10px;
+    margin:10px;
+    border: 1px solid black;
+}
+
+.button-add-news, .button-update-news {
+    display: none;
+}
+
+
+
