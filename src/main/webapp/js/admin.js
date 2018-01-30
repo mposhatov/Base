@@ -70,17 +70,31 @@ function getFullNewsForAdmin(newsId) {
     doAjaxRequest(params);
 }
 
-function showFormForUpdateNews(name, publishAt, unpublishAt, status, content) {
+function getFullNewsForUpdate(newsId) {
+    var params = $.extend({}, defaultAjaxParams);
+    params.url = url.news;
+
+    params.requestType = "GET";
+
+    params.data = {
+        id: newsId
+    };
+
+    params.successCallbackFunc = function (news) {
+        showFormForUpdateNews(news);
+    };
+
+    doAjaxRequest(params);
+}
+
+function showFormForUpdateNews(news) {
     showFormFullNews();
     $("#button-update-news").css('display', 'block');
     $("#button-add-news").css('display', 'none');
-    $("#form-full-news-name").val(name);
-    $("#form-full-news-publishAt").val(publishAt);
-    $("#form-full-news-unpublishAt").val(unpublishAt);
-
-    var newContent = content.replace(/!/g, '<');
-    newContent = newContent.replace(/@/g, ">");
-    CKEDITOR.instances['form-full-news-content'].insertHtml(newContent);
+    $("#form-full-news-name").val(news.name);
+    $("#form-full-news-publishAt").val(moment(news.publishAt).format("YYYY-MM-DD"));
+    $("#form-full-news-unpublishAt").val(moment(news.unpublishAt).format("YYYY-MM-DD"));
+    CKEDITOR.instances['form-full-news-content'].setData(news.content);
 }
 
 function showFormForAddNews() {
@@ -116,24 +130,7 @@ function generateHtmlShortNewsForAdmin(news) {
 
     html += "<div class=button-show-news onclick=getFullNewsForAdmin(" + news.id + ")>Просмотреть новость</div>";
 
-    // var content = news.content.replace(/\s+/g, '');
-    // content = content.replace(/['"]+/g, '');
-    // content = content.replace(/"/g, '&quot;');
-
-    var content = news.content.replace(/</g, '!');
-    content = content.replace(/>/g, '@');
-    content = content.replace(/"/g, '');
-    content = content.replace(/'/g, '');
-
-    html +=
-        "<div class=button-updated-news onclick=showFormForUpdateNews("
-        + "'" + news.name + "'" + ","
-        + "'" + moment(news.publishAt).format("YYYY-MM-DD").toString() + "'" + ","
-        + "'" + moment(news.unpublishAt).format("YYYY-MM-DD").toString() + "'" + ","
-        + "'" + news.status + "'" + ","
-        + "'" + content + "'" + ")>Редактировать новость</div>";
-
-    // html += "<div class=button-updated-news onclick=showFormForUpdateNews()>Редактировать новость</div>";
+    html += "<div class=button-updated-news onclick=getFullNewsForUpdate(" + news.id + ")>Редактировать новость</div>";
 
     html += "</div>";
 
